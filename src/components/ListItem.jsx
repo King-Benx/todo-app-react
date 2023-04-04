@@ -1,5 +1,7 @@
-import { BsTrash } from "react-icons/bs";
-import { useState, useEffect } from "react";
+import { BsTrash } from 'react-icons/bs';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 function ListItem({
   id,
   item,
@@ -8,11 +10,11 @@ function ListItem({
   itemCheckedListener,
   editItemListener,
 }) {
-  const [state, setState] = useState({ completed: completed, item: item });
+  const [state, setState] = useState({ completed, item });
 
   const handleDelete = () => {
     itemDeleteListener(id);
-};
+  };
 
   const handleInputChange = (e) => {
     setState((prev) => ({
@@ -23,8 +25,8 @@ function ListItem({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    editItemListener(id,state.item);
-  }
+    editItemListener(id, state.item);
+  };
 
   const handleItemChecked = (e) => {
     setState((prev) => ({
@@ -34,13 +36,13 @@ function ListItem({
     itemCheckedListener(id, e.target.checked);
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     setState((prev) => ({
       ...prev,
-      item: item,
-      completed:completed,
+      item,
+      completed,
     }));
-  }, [id, item, completed])
+  }, [id, item, completed]);
 
   return (
     <li>
@@ -61,10 +63,20 @@ function ListItem({
               type="text"
             />
           </form>
-             <BsTrash className="button" onClick={handleDelete} />
+          <BsTrash className="button" onClick={handleDelete} />
         </div>
       </div>
     </li>
   );
 }
+
+ListItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  item: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
+  itemDeleteListener: PropTypes.func.isRequired,
+  itemCheckedListener: PropTypes.func.isRequired,
+  editItemListener: PropTypes.func.isRequired,
+};
+
 export default ListItem;

@@ -1,12 +1,14 @@
-import { useState } from "react";
-function Form({submitHandler}) {
-  const [state, setState] = useState({todo:''});
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+
+function Form({ submitHandler }) {
+  const [state, setState] = useState({ todo: '' });
   const handleSubmit = (e) => {
     e.preventDefault();
     submitHandler(state.todo);
-    setState(prev=> ({
-        ...prev,
-        todo:''
+    setState((prev) => ({
+      ...prev,
+      todo: '',
     }));
   };
 
@@ -14,7 +16,7 @@ function Form({submitHandler}) {
     <form onSubmit={handleSubmit}>
       <legend>
         <div>
-          <span>Today's To Do</span>
+          <span>Today&apos;s To Do</span>
         </div>
       </legend>
       <div className="form-group">
@@ -23,9 +25,9 @@ function Form({submitHandler}) {
           name="todo"
           id="todo"
           value={state.todo}
-          onChange={(e)=> setState(prev=>({
+          onChange={(e) => setState((prev) => ({
             ...prev,
-            todo: e.target.value
+            todo: e.target.value,
           }))}
           placeholder="Add to your list..."
         />
@@ -33,5 +35,9 @@ function Form({submitHandler}) {
     </form>
   );
 }
+
+Form.propTypes = {
+  submitHandler: PropTypes.func.isRequired,
+};
 
 export default Form;
