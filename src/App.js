@@ -1,5 +1,5 @@
-import './App.scss';
 import { useState } from 'react';
+import './App.scss';
 import Form from './components/Form';
 import ListSection from './components/ListSection';
 
