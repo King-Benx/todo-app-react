@@ -161,10 +161,6 @@ If you like this project...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Acknowledgement <a name="acknowledgement"></a>
-
-I would like to thank Microverse for all help rendered
-
 ## 📝 License <a name="license"></a>
 
 This project is [MIT](./LICENSE) licensed.
